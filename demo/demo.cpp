@@ -32,7 +32,7 @@ int main(int argc, char** argv)
     else
         export_procs_ids = { {0}, {6}, {} };
 
-    zcomm::ZCommWrapper<DataClass> zcomm = zcomm::ZCommWrapper<DataClass>(
+    zcomm::ZComm<DataClass> zcomm = zcomm::ZComm<DataClass>(
             comm, export_procs_ids, 3);
 
     std::vector<DataClass> send_data(10);

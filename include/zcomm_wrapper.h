@@ -19,7 +19,7 @@ namespace zcomm
 {
 
 template <typename T>
-class ZCommWrapper
+class ZComm
 {
 public:
 
@@ -31,9 +31,9 @@ public:
     // ----------------------------------------------------------------------
     // Constructor
     // ----------------------------------------------------------------------
-    ZCommWrapper(MPI_Comm& _comm,
-                 const std::vector<std::vector<int>>& _export_ids_start,
-                 int _stride)
+    ZComm(MPI_Comm& _comm,
+          const std::vector<std::vector<int>>& _export_ids_start,
+          int _stride)
     {
         comm = _comm;
         stride_size = _stride;
