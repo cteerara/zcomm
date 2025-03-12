@@ -1,7 +1,3 @@
-//
-// Created by cteerara on 1/8/25.
-//
-
 #ifndef ZCOMM_ZCOMM_WRAPPER_H
 #define ZCOMM_ZCOMM_WRAPPER_H
 
@@ -41,7 +37,7 @@ public:
         MPI_Comm_size(comm, &mpi_size);
 
         // Make sure export_ids_start is a nested list with size equal to the number of mpi procs
-        assert(_export_ids_start.size() == mpi_size);
+        assert((int)_export_ids_start.size() == mpi_size);
 
         nbyte = sizeof(T);
         set_export_data(_export_ids_start);
@@ -62,7 +58,7 @@ public:
         int count = 0;
         for (int r=0; r < mpi_size; ++r)
         {
-            for (int i=0; i < _export_ids_start[r].size(); ++i)
+            for (unsigned int i=0; i < _export_ids_start[r].size(); ++i)
             {
                 for (int stride_step=0; stride_step < stride_size; ++stride_step)
                 {
@@ -160,7 +156,7 @@ private:
 
     void deserialize(const char* buffer, T* data, int n)
     {
-        for (unsigned int i=0; i<n; ++i)
+        for (int i=0; i<n; ++i)
         {
             const char* p = buffer + i*nbyte;
             std::memcpy(&data[i], p, nbyte);
@@ -175,3 +171,4 @@ private:
 
 
 #endif //ZCOMM_ZCOMM_WRAPPER_H
+
